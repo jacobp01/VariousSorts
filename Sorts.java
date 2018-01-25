@@ -25,10 +25,12 @@ public class Sorts{
 	System.out.println();
 	for(int i = list.size()-1; i >= 0; i--) {
         for(int j = 0; j < i; j++) {
+            steps += 3;
             if(list.get(j) > list.get(j + 1)) {
                 int temp = list.get(j);
                 list.set(j, list.get(j + 1));
                 list.set(j + 1, temp);
+                steps += 4;
             }
         }
     }
@@ -51,9 +53,11 @@ public class Sorts{
             int minIndex = k;
             for( int j=k+1; j<list.size(); j++ )
             {
+                steps += 1;
                 if( list.get(j) < list.get(minIndex) )
                 {
                     minIndex = j;
+                    steps += 3;
                 }
             }
             
@@ -61,6 +65,7 @@ public class Sorts{
             int temp = list.get(k);
             list.set( k, list.get(minIndex) );
             list.set( minIndex, temp );
+            steps += 2; 
         }
     
   }
@@ -78,16 +83,68 @@ public class Sorts{
 	for (int i=1; i < list.size(); i++)
    {
       int index = list.get(i); int j = i;
+      steps += 4;
       while (j > 0 && list.get(j-1) > index)
       {
            list.set(j,list.get(j-1));
            j--;
+           steps += 1;
       }
       list.set(j, index);
   }
   
 }
- 
+  public void mergeSort(ArrayList <Integer> list, int low, int high) {
+        // check if low is smaller than high, if not then the array is sorted
+        if( low < high) {
+            // Get the index of the element which is in the middle
+            int middle = low + (high - low) / 2;
+            //System.out.print ("low " + low + "middle " + middle + " high " + high);
+            // Sort the left side of the array
+            mergeSort(list, low, middle);
+            // Sort the right side of the array
+            mergeSort(list, middle + 1, high);
+            // Combine them both
+            merge(list, low, middle, high);
+        }
+    }
+
+    private void merge(ArrayList <Integer> list, int low, int middle, int high) {
+        ArrayList <Integer> helper = new ArrayList <Integer> ();
+
+        int i = low;
+        int j = middle + 1;
+        // Copy the smallest values from either the left or the right side
+        // to the helper
+        while (i <= middle || j <= high) {
+            if (i > middle) {
+                helper.add(list.get(j));
+                j++;
+                steps += 2;
+            }
+            else if (j > high){
+                helper.add(list.get(i));
+                i++;
+                steps += 3;
+            }
+            else if (list.get(i) <= list.get(j)) {
+                helper.add(list.get(i));
+                i++;
+                steps += 4;
+            } else {
+                helper.add(list.get(j));
+                j++;
+                steps += 5;
+            }
+        }
+        int m = low;
+        // Copy the merged part back into the original list from low to high index
+        for(int l = 0; l < helper.size(); l++) {
+            list.set(m, helper.get(l));
+            m++;
+            steps += 2;
+        }
+    }
   /**
    *  Accessor method to return the current value of steps
    *
