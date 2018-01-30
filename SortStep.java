@@ -39,11 +39,13 @@ public class SortStep{
       System.out.println("(3) Insertion sort");
       System.out.println("(4) Recursive mergesort");
       System.out.println("(5) Fill with Integers");
+      System.out.println("(6) Sequential Sort");
+      System.out.println("(7) Binary Sort");
       System.out.println("(Q) Quit");
       System.out.println();
       System.out.print("Choice ---> ");
       choice = console.next() + " ";
-      if ('1' <= choice.charAt(0) && choice.charAt(0) <= '6'){
+      if ('1' <= choice.charAt(0) && choice.charAt(0) <= '8'){
         System.out.println();
 
         mySorts.setStepCount(0);
@@ -67,17 +69,27 @@ public class SortStep{
               mySorts.mergeSort(myArray, 0, last);
               break;
             case '5':
-        	  listType = "Integer";
-              break;              
+              listType = "Integer";
+              break;
+            case '6':
+              resetArray();
+              mySorts.sequentialSearch(myArray, 10);
+              break;
+            case '7':
+              resetArray();
+              last = myArray.size() - 1;
+              mySorts.mergeSort(myArray, 0, last);
+              mySorts.binarySearch(myArray, 10);
+              break;
         }
 
         if ('1' <= choice.charAt(0) && choice.charAt(0) <= '4'){
-        	System.out.println();
-        	System.out.println("Array sorted to:");
-	        screenOutput();
-	        System.out.println();
-	        System.out.println("# steps = " + mySorts.getStepCount());
-	        System.out.println();
+            System.out.println();
+            System.out.println("Array sorted to:");
+            screenOutput();
+            System.out.println();
+            System.out.println("# steps = " + mySorts.getStepCount());
+            System.out.println();
         }
       }
     } while (choice.charAt(0) != 'Q' && choice.charAt(0) != 'q');
@@ -112,7 +124,7 @@ public class SortStep{
    */
   private void resetArray(){
     if (myArray == null || listType.equals("Integer")){
-    	fillArrayWithInts();
+        fillArrayWithInts();
     }
 
     System.out.println();

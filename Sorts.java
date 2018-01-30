@@ -145,6 +145,13 @@ public class Sorts{
             steps += 2;
         }
     }
+  public void sequentialSearch(ArrayList <Integer> list, int value){
+      
+    }
+  
+  public void binarySearch(ArrayList <Integer> list, int value){
+      
+    }
   /**
    *  Accessor method to return the current value of steps
    *
