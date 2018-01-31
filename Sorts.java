@@ -161,7 +161,7 @@ public class Sorts{
   
   int binarySearch(ArrayList <Integer> list, int value, int imin, int imax){
       if (imax < imin){
-          System.out.print("Error");
+          System.out.print("Error ");
     }
     else{
         int imid = imax + (imin - 1) / 2;

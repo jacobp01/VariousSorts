@@ -75,7 +75,7 @@ public class SortStep{
               resetArray();
               System.out.println("Which number to search for?");
               int findInt = console.nextInt();
-              System.out.println("The number was at index:" + mySorts.sequentialSearch(myArray, findInt));
+              System.out.println("The number was at index: " + mySorts.sequentialSearch(myArray, findInt));
               break;
             case '7':
               resetArray();
@@ -83,7 +83,7 @@ public class SortStep{
               mySorts.mergeSort(myArray, 0, last);
               System.out.println("Which number to search for?");
               int findBinInt = console.nextInt();
-              System.out.println("The number was at index:" + mySorts.binarySearch(myArray, findBinInt, 0, last));
+              System.out.println("The number was at index: " + mySorts.binarySearch(myArray, findBinInt, 0, last));
               break;
         }
 
