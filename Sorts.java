@@ -19,11 +19,11 @@ public class Sorts{
    * @param  list  reference to an array of integers to be sorted
    */
   public void bubbleSort(ArrayList <Integer> list){
-	//replace these lines with your code
-	System.out.println();
-	System.out.println("Bubble Sort");
-	System.out.println();
-	for(int i = list.size()-1; i >= 0; i--) {
+    //replace these lines with your code
+    System.out.println();
+    System.out.println("Bubble Sort");
+    System.out.println();
+    for(int i = list.size()-1; i >= 0; i--) {
         for(int j = 0; j < i; j++) {
             steps += 3;
             if(list.get(j) > list.get(j + 1)) {
@@ -43,11 +43,11 @@ public class Sorts{
    * @param  list  reference to an array of integers to be sorted
    */
   public void selectionSort(ArrayList <Integer> list){
-	//replace these lines with your code
-	System.out.println();
-	System.out.println("Selection Sort");
-	System.out.println();
-	for( int k=0; k<list.size()-1; k++ )
+    //replace these lines with your code
+    System.out.println();
+    System.out.println("Selection Sort");
+    System.out.println();
+    for( int k=0; k<list.size()-1; k++ )
         {
             // find the smallest value in arr[k..size-1]
             int minIndex = k;
@@ -76,11 +76,11 @@ public class Sorts{
    * @param  list  reference to an array of integers to be sorted
    */
   public void insertionSort(ArrayList <Integer> list){
-	//replace these lines with your code
-	System.out.println();
-	System.out.println("Insertion Sort");
-	System.out.println();
-	for (int i=1; i < list.size(); i++)
+    //replace these lines with your code
+    System.out.println();
+    System.out.println("Insertion Sort");
+    System.out.println();
+    for (int i=1; i < list.size(); i++)
    {
       int index = list.get(i); int j = i;
       steps += 4;
@@ -159,9 +159,26 @@ public class Sorts{
         return -1;
     }
   
-  public void binarySearch(ArrayList <Integer> list, int value){
-      
+  int binarySearch(ArrayList <Integer> list, int value, int imin, int imax){
+      if (imax < imin){
+          System.out.print("Error");
     }
+    else{
+        int imid = imax + (imin - 1) / 2;
+        if(list.get(imid) > value){
+            steps++;
+            return binarySearch(list, value, imin, imid - 1);
+        }
+        else if(list.get(imid) < value){
+            steps++;
+            return binarySearch(list, value, imid + 1, imax);
+        }
+        else{
+            return imid;
+        }
+        }
+    return -1;
+}
   /**
    *  Accessor method to return the current value of steps
    *
