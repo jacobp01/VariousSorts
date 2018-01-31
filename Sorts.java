@@ -145,8 +145,18 @@ public class Sorts{
             steps += 2;
         }
     }
-  public void sequentialSearch(ArrayList <Integer> list, int value){
+  int sequentialSearch(ArrayList <Integer> list, int value){
       
+        for (int i = 0; i < list.size(); i++)
+        {
+            // Return the index of the element if the element is found
+            steps++;
+            if (list.get(i) == value)
+                return i;
+        }
+  
+        // return -1 if the element is not found
+        return -1;
     }
   
   public void binarySearch(ArrayList <Integer> list, int value){

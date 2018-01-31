@@ -73,7 +73,9 @@ public class SortStep{
               break;
             case '6':
               resetArray();
-              mySorts.sequentialSearch(myArray, 10);
+              System.out.println("Which number to search for?");
+              int findInt = console.nextInt();
+              System.out.println("The number was at index:" + mySorts.sequentialSearch(myArray, findInt));
               break;
             case '7':
               resetArray();
@@ -83,7 +85,7 @@ public class SortStep{
               break;
         }
 
-        if ('1' <= choice.charAt(0) && choice.charAt(0) <= '4'){
+        if ('1' <= choice.charAt(0) && choice.charAt(0) <= '8'){
             System.out.println();
             System.out.println("Array sorted to:");
             screenOutput();
