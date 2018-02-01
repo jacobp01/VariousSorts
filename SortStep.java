@@ -80,7 +80,7 @@ public class SortStep{
             case '7':
               resetArray();
               last = myArray.size() - 1;
-              mySorts.mergeSort(myArray, 0, last);
+              mySorts.mergeSortNoStep(myArray, 0, last);
               System.out.println("Which number to search for?");
               int findBinInt = console.nextInt();
               System.out.println("The number was at index: " + mySorts.binarySearch(myArray, findBinInt, 0, last));

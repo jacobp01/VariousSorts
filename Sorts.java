@@ -108,7 +108,20 @@ public class Sorts{
             merge(list, low, middle, high);
         }
     }
-
+ public void mergeSortNoStep(ArrayList <Integer> list, int low, int high) {
+        // check if low is smaller than high, if not then the array is sorted
+        if( low < high) {
+            // Get the index of the element which is in the middle
+            int middle = low + (high - low) / 2;
+            //System.out.print ("low " + low + "middle " + middle + " high " + high);
+            // Sort the left side of the array
+            mergeSortNoStep(list, low, middle);
+            // Sort the right side of the array
+            mergeSortNoStep(list, middle + 1, high);
+            // Combine them both
+            mergeNoStep(list, low, middle, high);
+        }
+    }
     private void merge(ArrayList <Integer> list, int low, int middle, int high) {
         ArrayList <Integer> helper = new ArrayList <Integer> ();
 
@@ -145,6 +158,37 @@ public class Sorts{
             steps += 2;
         }
     }
+    private void mergeNoStep(ArrayList <Integer> list, int low, int middle, int high) {
+        ArrayList <Integer> helper = new ArrayList <Integer> ();
+
+        int i = low;
+        int j = middle + 1;
+        // Copy the smallest values from either the left or the right side
+        // to the helper
+        while (i <= middle || j <= high) {
+            if (i > middle) {
+                helper.add(list.get(j));
+                j++;
+            }
+            else if (j > high){
+                helper.add(list.get(i));
+                i++;
+            }
+            else if (list.get(i) <= list.get(j)) {
+                helper.add(list.get(i));
+                i++;
+            } else {
+                helper.add(list.get(j));
+                j++;
+            }
+        }
+        int m = low;
+        // Copy the merged part back into the original list from low to high index
+        for(int l = 0; l < helper.size(); l++) {
+            list.set(m, helper.get(l));
+            m++;
+        }
+    }
   int sequentialSearch(ArrayList <Integer> list, int value){
       
         for (int i = 0; i < list.size(); i++)
@@ -160,24 +204,23 @@ public class Sorts{
     }
   
   int binarySearch(ArrayList <Integer> list, int value, int imin, int imax){
-      if (imax < imin){
-          System.out.print("Error ");
+    if (imax < imin){
+           System.out.println("Number not there");
+           return -1;
     }
     else{
-        int imid = imax + (imin - 1) / 2;
-        if(list.get(imid) > value){
+        int imid = (imax + imin) / 2;
+        if(list.get(imid) > value){   
             steps++;
             return binarySearch(list, value, imin, imid - 1);
         }
         else if(list.get(imid) < value){
-            steps++;
             return binarySearch(list, value, imid + 1, imax);
         }
         else{
             return imid;
         }
         }
-    return -1;
 }
   /**
    *  Accessor method to return the current value of steps
